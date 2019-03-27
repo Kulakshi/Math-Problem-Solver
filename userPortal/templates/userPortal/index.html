@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Index</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!--
+          <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../static/css/style.css" rel="stylesheet">
+       -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#uni_set_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ξ ');
+            });
+            $("#uni_set_btn2").click(function (event) {
+                addSymbol('#id_question', ' ξ ');
+            });
+            $("#union_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ∪ ');
+            });
+            $("#union_btn2").click(function (event) {
+                addSymbol('#id_question', ' ∪ ');
+            });
+            $("#ints_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ∩ ');
+            });
+            $("#ints_btn2").click(function (event) {
+                addSymbol('#id_question', ' ∩ ');
+            });
+            $("#rsub_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ⸦ ');
+            });
+            $("#rsub_btn2").click(function (event) {
+                addSymbol('#id_question', ' ⸦ ');
+            });
+            $("#lsub_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ⊃ ');
+            });
+            $("#lsub_btn2").click(function (event) {
+                addSymbol('#id_question', ' ⊃ ');
+            });
+            $("#rpsub_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ⊆ ');
+            });
+            $("#rpsub_btn2").click(function (event) {
+                addSymbol('#id_question', ' ⊆ ');
+            });
+            $("#lpsub_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ⊇');
+            });
+            $("#lpsub_btn2").click(function (event) {
+                addSymbol('#id_question', ' ⊇');
+            });
+            $("#belongs_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ∈ ');
+            });
+            $("#belongs_btn2").click(function (event) {
+                addSymbol('#id_question', ' ∈ ');
+            });
+            $("#nbelongs_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ∉ ');
+            });
+            $("#nbelongs_btn2").click(function (event) {
+                addSymbol('#id_question', ' ∉ ');
+            });
+            $("#empty_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' 𝜙 ');
+            });
+            $("#empty_btn2").click(function (event) {
+                addSymbol('#id_question', ' 𝜙 ');
+            });
+            $("#ineq_btn1").click(function (event) {
+                addSymbol('#id_your_name', ' ≠ ');
+            });
+            $("#ineq_btn2").click(function (event) {
+                addSymbol('#id_question', ' ≠ ');
+            });
+
+            function addSymbol(textAreaId, symbol) {
+                var textArea = $(textAreaId);
+                var cursorPosition_start = $(textAreaId).prop("selectionStart");
+                var cursorPosition_end = $(textAreaId).prop("selectionEnd");
+                var text = textArea.val()
+                if (cursorPosition_end !== cursorPosition_start) {
+                    textArea[0].value = text.substring(0, cursorPosition_start) + symbol + text.substring(cursorPosition_end, text.length);
+                } else {
+                    textArea[0].value = [text.slice(0, cursorPosition_start), symbol, text.slice(cursorPosition_start)].join('');
+                }
+                textArea.focus();
+                textArea[0].selectionEnd = cursorPosition_start + 3;
+            }
+
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row center-block">
+        <div class="col-md-12 center-block">
+            <div class="page-header text-center">
+                <h1>Set Problem Solver</h1>
+            </div>
+
+            <form class="form-inline  center-block" method="post" novalidate>
+                {% csrf_token %}
+                <table class="table table-condensed table-striped table-responsive">
+                    <tr>
+                        <td>
+                            {{ form.use_ml }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>{{ form.info_type.label }}</b>
+                        </td>
+                        <td>
+                            <b>{{ form.your_name.label }}</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ form.info_type }}
+                        </td>
+                        <td>
+
+                            <div class="col">
+                                <div class="row center-block">
+                                    <button type="button" id="uni_set_btn1"> ξ</button>
+                                    <button type="button" id="union_btn1"> ∪</button>
+                                    <button type="button" id="ints_btn1"> ∩</button>
+                                    <button type="button" id="rsub_btn1"> ⸦</button>
+                                    <button type="button" id="lsub_btn1"> ⊃</button>
+                                    <button type="button" id="rpsub_btn1"> ⊆</button>
+                                    <button type="button" id="lpsub_btn1"> ⊇</button>
+                                    <button type="button" id="belongs_btn1"> ∈</button>
+                                    <button type="button" id="nbelongs_btn1"> ∉</button>
+                                    <button type="button" id="ineq_btn1"> ≠</button>
+                                    <button type="button" id="empty_btn1"> 𝜙</button>
+                                </div>
+                                {{ form.your_name }}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>{{ form.ques_type.label }}</b>
+                        </td>
+                        <td>
+                            <b>{{ form.question.label }}</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            {{ form.ques_type }}
+                        </td>
+                        <td>
+                            <div class="col">
+                                <div class="row center-block">
+                                    <button type="button" id="uni_set_btn2"> ξ</button>
+                                    <button type="button" id="union_btn2"> ∪</button>
+                                    <button type="button" id="ints_btn2"> ∩</button>
+                                    <button type="button" id="rsub_btn2"> ⸦</button>
+                                    <button type="button" id="lsub_btn2"> ⊃</button>
+                                    <button type="button" id="rpsub_btn2"> ⊆</button>
+                                    <button type="button" id="lpsub_btn2"> ⊇</button>
+                                    <button type="button" id="belongs_btn2"> ∈</button>
+                                    <button type="button" id="nbelongs_btn2"> ∉</button>
+                                    <button type="button" id="ineq_btn2"> ≠</button>
+                                    <button type="button" id="empty_btn2"> 𝜙</button>
+                                </div>
+                                {{ form.question }}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" class="btn btn-primary btn-large form-horizontal " value="Submit"
+                                   formaction="/solver/form"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div class="jumbotron">
+                <h3> Answer </h3>
+                <p>
+                    {{ message }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/js/jquery.min.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
+<script src="../../static/js/scripts.js"></script>
+</body>
+</html>

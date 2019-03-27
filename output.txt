@@ -1,0 +1,269 @@
+<I>1. Letn(A)=35 and n(B)=40. Also n(A ∩ B)= 10. </I><Q>Find n(A ∪ B)</Q>
+
+write() argument must be str, not None
+============================
+
+<Q>2. If the following facts are known, find n(A ∩ B).</Q><I>n(A)=50 , n(B)= 60 and n(B’ ∩A)=40</I>
+
+ n(A∩B) = 10
+============================
+
+<I>3. It is given thatn(B)=20, n(B ∩ A)= 5 andn(B ∪ A)= 20. </I><Q>Find n(A).</Q>
+
+write() argument must be str, not None
+============================
+
+<Q>4. Find n(B) and n(A∪B) from the given facts.</Q><I>n(A)=70, n(A’ ∩ B)=100and n(A∩ B’)=50</I>
+
+write() argument must be str, not None
+============================
+
+<I>5. Imagine that n(A∩ B) = 12, n(B∩ C) = 4,n(A ∩ C) = 8 and n(A ∩ B∩ C’) = 10. </I><Q>Then what is n(A ∩ B ∩ C) ?</Q>
+
+ n(A∩B∩C) = 2
+============================
+
+<I>6. Imagine n(x)=10, n(y) = 20, n(x∩y)=5.</I><Q> How much is n(x∪y)?</Q>
+
+ n(x∪y) = 25
+============================
+
+Not enough data to solve the problem
+============================
+
+<Q>8.  Calculate n(x’)</Q><I> if n(x)=5, n(s)=10, n(ξ)=30?</I>
+
+ n(x') = 25
+============================
+
+Inconsistent Data : Cardinality of sub set is larger than super set
+============================
+
+Inconsistent Data : Cardinality of super set is less than sub set
+============================
+
+<I>11. If n(A)=22, n(B)=30, </I><Q>find least value of n(ξ)?</Q>
+
+ n(ξ) = 30
+============================
+
+'Z'
+============================
+
+<I>13. If n(A)=4, n(B)=7, n(A∩B)=2, </I><Q>find n(A∪B)?</Q>
+
+ n(A∪B) = 9
+============================
+
+<I>14. n(X)=100, n(Y)=130, n(Z)=170, n(X∩Y)=20, n(Y∩Z)=15, n(Z∩X)=12, n(X∩Y∩Z)=5, n(ξ)=400. </I><Q>Find n((X∪Y∪Z)’)</Q>
+
+ n((X∪Y∪Z)') = 42
+============================
+
+<I>15. A and B are two sets.
+n(ξ ) = 48
+n(A) = 22
+n(A ∩ B) = 22
+n(A ∪ B) = 41</I>
+<Q>(a) Complete the Venn Diagram to show the <b>numbers</b> of elements.
+<Diagram>
+(b) Calculate
+(i) n(A ∩ B')
+(ii) n(A' ∪ B')</Q>
+
+ n(A∩B') = 0 n(A'∪B') = 26
+============================
+
+<I>16. A and B are two sets.
+n(ξ ) = 47
+n(B) = 22
+n(A ∩ B) = 9
+n(A') = 29</I>
+<Q>(a) Complete the Venn diagram to show the number of elements in each region of the Venn diagram.
+<Diagram>
+(b) Calculate n(A ∪ B)
+
+(c) Calculate n(A ∩ B')</Q>
+
+ n(A∩B') = 9 n(A∪B) = 31
+============================
+
+<I>17. If n(A)=21,n(A ∪ B)=29 and n(A ∩ B)=7; </I><Q>what is n(B)?</Q>
+
+ n(B) = 15
+============================
+
+<I>18. If n(A)=22, n(B) = 24, and n(A ∩ B)=7 </I><Q>then n(A ∪ B)=?</Q>
+
+write() argument must be str, not None
+============================
+
+<Q>19. Calculate n(Y)</Q><I> if n(X)=27, n(X∩Y)=6, n(X∪Y)=210.</I>
+
+ n(Y) = 189
+============================
+
+Inconsistant data
+============================
+
+Inconsistent Data : Cardinality of sub set is larger than super set
+============================
+
+<I>22. It is given that n(ξ)=51, n(A)=24, n(B)=22, n(B'∩A)=10.</I>
+<Q>Calculate
+(i) n(A∩B)
+(ii) n(A∪B)'</Q>
+
+write() argument must be str, not None
+============================
+
+<I>23. Given that, n(A)=26, n(B)=21, n(A∪B)=41 and n(A∩B)'=9.</I>
+
+<Q>Calculate
+
+(i) n(A∩B)
+
+(ii) n(ξ)</Q>
+
+write() argument must be str, not None
+============================
+
+<I>24. It is given that, n(ξ)=54, n(A')=21, n(B')=22 and n(A∪B)'=8</I>
+
+<Q>Calculate
+
+(i) n(A)
+
+(ii) n(B)</Q>
+
+
+write() argument must be str, not None
+============================
+
+Inconsistant data
+============================
+
+<I>26. Let A, B and C be subsets of universal set U, and suppose n(U)=211, n(A)=29, n(B)=41, n(C)=45, n(A∩B)=9, n(A∩C)=21, n(B∩C) = 26, and n(A∩B∩C)=6. </I><Q>Compute n(A'∩ (B∪C)).</Q>
+
+ n(A'∩(B∪C)) = 36
+============================
+
+<I>27. Let A and B be sets, such that n(A) = 21 and n(B) = 22 and n(A∪B)=26, </I><Q>then how many element are in the set A∩B?</Q>
+
+
+============================
+
+Invalid expression
+============================
+
+<Q>29. Calculate n(A∪B)</Q> <I>if n(A)=22, n(A∩B)=8 and n(B)=26</I>
+
+ n(A∪B) = 40
+============================
+
+<I>30. Let A and B be two finite sets such that n(A) = 20, n(B) = 28 and n(A ∪ B) = 36.</I> <Q>What is n(A ∩ B)?</Q>
+
+ n(A∩B) = 12
+============================
+
+<I>31.  If n(A - B) = 18, n(A ∪ B) = 70 and n(A ∩ B) = 25, </I><Q>then find n(B).</Q>
+
+ n(B) = 52
+============================
+
+<I>32. Let (A∪B) = 60, n(A) = 27, n(B) = 42. </I><Q>What is</Q>
+
+write() argument must be str, not None
+============================
+
+<I>33. Given, n(A) = 36, n(B) = 12, n(C) = 18, n(A ∪ B ∪C) = 45 and n(A ∩ B ∩ C) = 4. </I><Q>What is ?</Q>
+
+
+============================
+
+<I>34. Let n(U)=221
+n(A) = 86,
+n(B)=75,
+b(C)=46,
+n(A ∩ B)=21,
+n(A ∩ C) = 25,
+n(B ∩ C)=10,
+n(A ∩ B ∩ C)=9.
+
+</I><Q>Calculate: (a) n[B ∩ (A ∪ C)] (b)n(C' ∪ (B ∩ A)) (c) n[(A ∪ B ∪ C)']</Q>
+
+
+write() argument must be str, not None
+============================
+
+<I>35. Let n(A∪B) = 9, n(A) = 5, n(B) = 7; </I><Q>what is n(A∩B)</Q>
+
+ n(A∩B) = 3
+============================
+
+<I>36. Let A and B sets in Universe; n(U) = 21, n(A') = 7, n(A ∩ B) = 2. </I><Q>what is n(A ∩ B')?</Q>
+
+ n(A∩B') = 12
+============================
+
+Inconsistant data
+============================
+
+<I>38. If X and Y are two sets such that n(X)=28, n(Y)=24, n(X∪Y)=49, </I><Q>find n(X ∩ Y)?</Q>
+
+ n(X∩Y) = 3
+============================
+
+<I>39. If n(A)=21,n(A ∪ B)=29 and n(A ∩ B)=7; </I><Q>what is n(B)?</Q>
+
+ n(B) = 15
+============================
+
+<I>40. If n(A)=22, n(B) = 24, and n(A ∩ B)=7 </I><Q>then n(A ∪ B)=?</Q>
+
+write() argument must be str, not None
+============================
+
+'B'
+============================
+
+<I>42. Let A, B and C be subsets of universal set U, and suppose n(U)=211, n(A)=29, n(B)=41, n(C)=45, n(A∩B)=9, n(A∩C)=21, n(B∩C) = 26, and n(A∩B∩C)=6. </I><Q>Compute n(A'∩ (B∪C)).</Q>
+
+ n(A'∩(B∪C)) = 36
+============================
+
+<I>43.If n(A ∪ B)=71, n(A ∩ B)=51, and n(A)=n(B), </I><Q>find n(A)</Q>
+
+ n(A) = 61
+============================
+
+<I>44.It is given that n (A)=19 ද ,n(B)=13 ද ,n(A∪B)=27. </I><Q>Find n(A∩B)</Q>
+
+ n(A∩B) = 5
+============================
+
+'<=' not supported between instances of 'str' and 'int'
+============================
+
+'A'
+============================
+
+<I>47.If n (ξ)=59, n (A)=36,</I> <Q>How many is n(A')?</Q>
+
+ n(A') = 23
+============================
+
+<I>48.If n(P)=85,n(Q)=48,n(P∪Q)=105 </I><Q>find n(P∩Q)</Q>
+
+ n(P∩Q) = 28
+============================
+
+'B'
+============================
+
+Invalid expression
+============================
+
+Unbalanced parenthesis for token: ")" at position: 1
+============================
+
