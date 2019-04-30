@@ -30,10 +30,7 @@ class Solver:
 
         if(infoType == util.type2):
             elements = self.fill_elements(info)
-        print("|||||||||||||||||||||||||")
         equations = self.generate_equations(self.data, info)
-        print("|||||||||||||||||||||||||")
-        print(equations)
         symbols = ()
         final_answers = [elements]
 
@@ -55,23 +52,17 @@ class Solver:
             symbols += (symbol,)
             self.result.update(sympy.solve(equations, symbols))
 
-        # print(self.qRegion_eqn_mapping)
-        print(self.result)
-        print(info.q_regions)
 
         if len(info.q_regions) > 0:
             for i in info.q_regions:
                 region = self.data[i]
                 expr = region.expr
-                print(expr)
                 if(expr is not None):
                     if(expr in self.result):
                         ans =  self.result[expr]
                     else:
                         # ans = eqn.evalf(subs=self.result)
                         ans = expr.subs(self.result)
-                    print(expr)
-                    print(ans)
                     try:
                         if(int(ans) - float(ans) != 0):
                             raise Exception("Inconsistant data : Cardinality cannot be non integer")
@@ -86,10 +77,8 @@ class Solver:
                     #     self.answers[self.data[i].label] = str(ans)
                     #     final_answers.append("n("+str(self.data[i].label) + ") = "+ str(ans))
 
-        print('ANS : ',output)
 
 
-        print(self.answers)
         for name in self.answers:
             ordered_set = list(self.answers[name])
             ordered_set.sort()
@@ -99,14 +88,12 @@ class Solver:
 
     def generate_equations(self,data,info):
         equations = ()
-        print("EQUATIONS")
         for i in info.get_filled_regions():
             v = self.data[i]
             # self.qRegion_eqn_mapping.append(None)
             if (v is not None):
                 equal_expr = None
                 if(v.equal_card_set is not None):
-                    print("EQUAL CARDINALITIES PRESENT@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                     region_index = info.get_region_index(v.equal_card_set)
                     equal_expr = data[region_index].expr
                     equations += (sympy.simplify(equal_expr-v.expr),)
@@ -128,7 +115,6 @@ class Solver:
                             equations += (eqn,)
         #             if(v.size is None and v.q_size is True):
         #                 self.qRegion_eqn_mapping.append(eqn)
-        # print(self.qRegion_eqn_mapping)
         return equations
 
     def find_min_cardinality(self, region_index, data, equations):
@@ -146,7 +132,6 @@ class Solver:
             symbols = ()
             eqn = data[region_index].expr - 0
             equations += (eqn,)
-            print(equations)
             result_copy = self.result.copy()
             for symbol in self.all_symbols:
                 symbols += (symbol,)
@@ -172,41 +157,25 @@ class Solver:
         symbols = ()
         eqn = data[region_index].expr - min
         equations += (eqn,)
-        print(eqn)
         result_copy = self.result.copy()
-        print(result_copy)
         for symbol in self.all_symbols:
             symbols += (symbol,)
-            print(symbols)
             result_copy.update(sympy.solve(equations, symbols))
         max_negative = 0
-        print(result_copy)
         for key, res in result_copy.items():
-            print(res < 0)
-            print(res)
             if (res < max_negative):
                 max_negative = res
                 return min + max_negative
         return min
 
     def fill_elements(self,info):
-        print('FILL ELEMENTS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         data = info.get_data()
         region_elements = []
         ans = ''
         for i, v in enumerate(data):
             if (v is not None):
                 if(v.q_elements is True or v.q_size is True):
-                    print("####======###")
-                    print(v)
-                    print(v.elements)
-                    print(self.data[i].elements)
                     self.fill_region_elements(v.name, info)
-                    # self.data[i].elements = set(region_elements)
-                    print(i)
-                    print(self.data[i].name)
-                    print(self.data[i].elements)
-                    print(data[i].name)
                     if data[i].elements:
                         self.data[i].size = len(data[i].elements)
                     elements = ''
@@ -217,18 +186,13 @@ class Solver:
                             self.answers[v.label] = v.elements
                         else:
                             self.answers[v.label] = ''
-                    # if(v.q_size):
-                    #     self.answers[v.label] = v.size
                     ans += v.name + ' :'+ elements +' , '
-        print("FOUND ELEMENTS ===================================")
-        print(region_elements)
         return ans
 
 
 
     def fill_region_elements(self,region_name,info):
         region_name = utils.convert_region_name_to_logical_exp(region_name)
-        print("filling ", region_name)
         if region_name == 'ξ':
             if (self.data is not None and self.data[len(self.data) - 1] is not None and self.data[len(self.data) - 1].elements is not None):
                 return self.data[len(self.data) - 1].elements
@@ -240,7 +204,6 @@ class Solver:
             #         return self.data[info.get_main_name_index_map[region_name]].elements
             algebra = boolean.BooleanAlgebra()
             exp = str(algebra.parse(region_name).pretty())
-            print("filling ", exp)
             return utils.evaluate_logic_exp_tree(exp, info.get_num_sets(), info.get_main_name_index_map(), self.get_union,
                                                  self.get_intersection, self.get_complement)
 
@@ -249,9 +212,6 @@ class Solver:
     def get_complement(self, num_sets, index):
         result = None
         result_index = None
-        print(self.data is not None)
-        print(self.data[len(self.data)-1])
-        print(self.data[len(self.data)-1].elements)
         if(self.data is not None and self.data[len(self.data)-1] is not None and self.data[len(self.data)-1].elements is not None):
             if(self.data[index] is not None and self.data[index].elements is not None):
                 result_index = ''.join('1' if x == '0' else '0' for x in bin(index)[2:].zfill(pow(2, num_sets)))
@@ -263,9 +223,9 @@ class Solver:
                 self.data[result_index].size = len(result)
                 return result_index
             else:
-                print("ERRORRR1")
+                print("ERROR")
         else:
-            print("ERRORRR2")
+            print("ERROR")
 
     def get_union(self,operands):
         result = None
@@ -291,8 +251,6 @@ class Solver:
         result = None
         result_index = None
         for operand in operands:
-            print("OPERAND", operand)
-            print(self.data[operand])
             if(self.data[operand] is not None and self.data[operand].elements is not None):
                 if (result is None):
                     result_index = operand

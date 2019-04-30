@@ -29,67 +29,67 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#uni_set_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ξ ');
+                addSymbol('#id_info', ' ξ ');
             });
             $("#uni_set_btn2").click(function (event) {
                 addSymbol('#id_question', ' ξ ');
             });
             $("#union_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ∪ ');
+                addSymbol('#id_info', ' ∪ ');
             });
             $("#union_btn2").click(function (event) {
                 addSymbol('#id_question', ' ∪ ');
             });
             $("#ints_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ∩ ');
+                addSymbol('#id_info', ' ∩ ');
             });
             $("#ints_btn2").click(function (event) {
                 addSymbol('#id_question', ' ∩ ');
             });
             $("#rsub_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ⸦ ');
+                addSymbol('#id_info', ' ⸦ ');
             });
             $("#rsub_btn2").click(function (event) {
                 addSymbol('#id_question', ' ⸦ ');
             });
             $("#lsub_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ⊃ ');
+                addSymbol('#id_info', ' ⊃ ');
             });
             $("#lsub_btn2").click(function (event) {
                 addSymbol('#id_question', ' ⊃ ');
             });
             $("#rpsub_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ⊆ ');
+                addSymbol('#id_info', ' ⊆ ');
             });
             $("#rpsub_btn2").click(function (event) {
                 addSymbol('#id_question', ' ⊆ ');
             });
             $("#lpsub_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ⊇');
+                addSymbol('#id_info', ' ⊇');
             });
             $("#lpsub_btn2").click(function (event) {
                 addSymbol('#id_question', ' ⊇');
             });
             $("#belongs_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ∈ ');
+                addSymbol('#id_info', ' ∈ ');
             });
             $("#belongs_btn2").click(function (event) {
                 addSymbol('#id_question', ' ∈ ');
             });
             $("#nbelongs_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ∉ ');
+                addSymbol('#id_info', ' ∉ ');
             });
             $("#nbelongs_btn2").click(function (event) {
                 addSymbol('#id_question', ' ∉ ');
             });
             $("#empty_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' 𝜙 ');
+                addSymbol('#id_info', ' 𝜙 ');
             });
             $("#empty_btn2").click(function (event) {
                 addSymbol('#id_question', ' 𝜙 ');
             });
             $("#ineq_btn1").click(function (event) {
-                addSymbol('#id_your_name', ' ≠ ');
+                addSymbol('#id_info', ' ≠ ');
             });
             $("#ineq_btn2").click(function (event) {
                 addSymbol('#id_question', ' ≠ ');
@@ -135,7 +135,7 @@
                             <b>{{ form.info_type.label }}</b>
                         </td>
                         <td>
-                            <b>{{ form.your_name.label }}</b>
+                            <b>{{ form.info.label }}</b>
                         </td>
                     </tr>
                     <tr>
@@ -158,7 +158,7 @@
                                     <button type="button" id="ineq_btn1"> ≠</button>
                                     <button type="button" id="empty_btn1"> 𝜙</button>
                                 </div>
-                                {{ form.your_name }}
+                                {{ form.info }}
                             </div>
                         </td>
                     </tr>

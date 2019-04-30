@@ -26,9 +26,8 @@ def check_consistency(num_of_digits, data):
         symbols.append(chr(a + i))
 
 
-    print(symbols)
     for i in range(len(symbols)):
         comb = itertools.combinations(symbols, i+1)
-        for combi in comb:
-            print(combi)
+        # for combi in comb:
+        #     print(combi)
 

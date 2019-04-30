@@ -10,12 +10,10 @@ def filter(text):
     return exps
 
 def readTaggedText(taggedText, numOfLabels = 2):
-    # print(taggedText)
     exps = []
     length = len(taggedText)
     i = 0
-    while i < length:  # for i, tuple in enumerate(taggedText):
-        # print(i)
+    while i < length:
         if taggedText[i][1] == 'e_1' if numOfLabels == 2 else 'B-e_1':
             exp = ''
             efs = False

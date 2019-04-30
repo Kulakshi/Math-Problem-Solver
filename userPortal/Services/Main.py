@@ -25,8 +25,6 @@ def handle(text):
     Handle Information part of the problem
     '''
     if (text["info"] is not None or text['info'] is not ''):
-        exps = []
-        qexps = []
         exps = Filter_ML.filter(text["info"])
         qexps = Filter_ML.filter(text["ques"])
 
@@ -39,7 +37,6 @@ def handle(text):
             if not isParseSuccess:
                 raise Exception("Error when parsing expression : ", exp)
         equations = exps
-        print(equations)
 
         if(exps is not None):
             if info_type == util.type1:
@@ -58,6 +55,8 @@ def handle(text):
                                 single_set_names.append(new_name)
                 if 'ξ' not in text['info'] and len(equations)>1:
                     equations = input_formatter.find_universal_set_symbol(equations, qexps, info_type)
+                for i, eqn in enumerate(equations):
+                    equations[i] = input_formatter.fill_elem_sequences(equations[i])
                 setDetails = getSetDetails_type_elem(equations)
                 infoOb = dataCollector.info(setDetails)
 
@@ -84,7 +83,6 @@ def handle(text):
 
                 items_to_remove = []
                 for i, expr in enumerate(expressions):
-                    print(expr)
                     if (input_formatter.filter_expressions_elem(expr, setDetails) is False):
                         items_to_remove.append(expr)
 
@@ -101,11 +99,10 @@ def handle(text):
     infoOb.update_data(qSets)
 
 
-    output = ''
-    for set in infoOb._regions:
-        output += set.name + " : " + str(set.size) + ', ' + str(set.elements)
+    # output = ''
+    # for set in infoOb._regions:
+    #     output += set.name + " : " + str(set.size) + ', ' + str(set.elements)
 
-    print("output", output)
     Solver = solvers.Solver()
     final_answers = Solver.solve(infoOb, info_type)
     final_answers = '<br/>'.join(final_answers.split('\n'))
@@ -118,25 +115,18 @@ VERBS = ["find", "Find", "Solve", "solve", "Calculate", "calculate", ':', "List"
 
 def extract_equations(text, regex):
     output = []
-    print(text),
-    print(regex)
     regex = re.compile(regex)
     extracted_indexes = []
     for i,eqn in enumerate(text):
         results = regex.finditer(eqn)
         # add validations
-        print("RES", eqn, results)
         for result in results:
             expr = result.group()
-            print(expr)
             expr = expr.lstrip()
             expr = expr.rstrip()
             extracted_indexes.append(i)
             output.append(expr)
     for index in reversed(extracted_indexes):
-        print(text)
-        print(index)
-        print(text[index])
         text = remove_at(index,text)
         # del text[index]
     return output
@@ -155,7 +145,6 @@ def getSetDetails_type_sn(equations, text):
 
         if "=" in equation:
             size = equation[equation.find("=") + 1:len(equation)]
-            print(EQUAL_CAR_SET in size)
             if (EQUAL_CAR_SET not in size):
                 if not Validator.is_a_positive_int(size):
                     raise Exception("negative cardinality")

@@ -23,7 +23,6 @@ def handle(text):
 
     text["info"] = input_formatter.change_alt_chars(text["info"])
     text["ques"] = input_formatter.change_alt_chars(text["ques"])
-    print(text["info"])
 
     if info_type == util.type2 :
         text["info"] = text["info"].replace('[', '(')
@@ -31,7 +30,6 @@ def handle(text):
         text["info"] = text["info"].replace(']', ')')
         text["ques"] = text["ques"].replace(']', ')')
 
-    print("TEXT", text)
 
     if ques_type == util.type2:
         reg = re.compile(roman_numbers, re.IGNORECASE)
@@ -39,7 +37,7 @@ def handle(text):
         if results is not None:
             for res in results:
                 text["ques"] = text["ques"].replace(res.group(), "# ")
-    e1 = []
+
     if (text["info"] is not None or text['info'] is not ''):
         if info_type == util.type1:
             equations = extract_equations(text["info"], cardinality_regex)
@@ -52,31 +50,22 @@ def handle(text):
 
             if 'ξ' not in text['info'] and len(equations) > 1:
                 equations = input_formatter.find_universal_set_symbol(equations, text["ques"], info_type)
-            # print("=====", equations)
 
             setDetails = getSetDetails_type_sn(equations, '')
-            for set in setDetails:
-                print(set.name)
-                print(set.size)
+            # for set in setDetails:
+            #     print(set.name)
+            #     print(set.size)
 
 
 
         elif info_type == util.type2:
             equations = extract_equations(text["info"], def_elem_regex)
 
-            print("====================================")
-            print(equations)
-            print("====================================")
-
             for i, eqn in enumerate(equations):
                 filtered_eqn = input_formatter.tag_based_filter_set_name_elem(eqn, def_elem_regex)
                 if filtered_eqn is not None:
                     equations[i] = filtered_eqn
                 equations[i] = input_formatter.fill_elem_sequences(equations[i])
-
-            print("====================================")
-            print(equations)
-            print("====================================")
 
             e1 = equations.copy()
             global single_set_names
@@ -93,7 +82,6 @@ def handle(text):
             if 'ξ' not in text['info'] and len(equations) > 1:
                 equations = input_formatter.find_universal_set_symbol(equations, text["ques"], info_type)
 
-            # print(equations)
 
             setDetails = getSetDetails_type_elem(equations)
 
@@ -115,17 +103,13 @@ def handle(text):
             # handle bullets
             sentences = re.split(r'[\n\r]+', text['ques'])
             text['ques'] = remove_bullets(sentences, text['ques'], setDetails)
-            # print(text['ques'])
             sentences = re.split(r'[\t]+', text['ques'])
             text['ques'] = remove_bullets(sentences, text['ques'], setDetails)
 
-            # print(text['ques'])
             expressions = extract_equations(text["ques"], def_elem_exp_regex)
-            # print("expressions", expressions)
 
             for i, expr in enumerate(expressions):
                 filtered_eqn = input_formatter.tag_based_filter_set_name_elem(expr, def_elem_exp_regex)
-                # print("FILTERD", filtered_eqn)
                 if filtered_eqn is not None:
                     expressions[i] = filtered_eqn
 
@@ -137,10 +121,6 @@ def handle(text):
 
             for item in items_to_remove:
                 expressions.remove(item)
-
-            print("===========================================")
-            print( e1  + expressions)
-            print("===========================================")
 
             qSets = getSetDetails_type_elem(expressions)
 
@@ -168,7 +148,6 @@ VERBS = ["find", "Find", "Solve", "solve", "Calculate", "calculate", ':', "List"
 def extract_equations(text, regex):
     for verb in VERBS:
         if verb in text:
-            print(verb)
             text = text.replace(verb, '#')
             # text = text[text.rfind(verb)+len(verb):len(text)]
     replacement = re.compile(re.escape(' set '), re.IGNORECASE)
@@ -184,7 +163,6 @@ def extract_equations(text, regex):
     results = regex.finditer(text)
     output = []
     # add validations
-    print("RES", results)
     for i, result in enumerate(results):
         expr = result.group()
         expr = expr.lstrip()
@@ -205,7 +183,6 @@ def getSetDetails_type_sn(equations, text):
 
         if "=" in equation:
             size = equation[equation.find("=") + 1:len(equation)]
-            print(EQUAL_CAR_SET in size)
             if (EQUAL_CAR_SET not in size):
                 if not Validator.is_a_positive_int(size):
                     raise Exception("negative cardinality")
@@ -259,8 +236,6 @@ def getEqualCardinalitySetData_sn(equal_sets):
 
 
 def getSetDetails_type_elem(equations):
-    # print("------------------------------------------------------------")
-    # print("get set details for elements \n")
     sets = []
     for equation in equations:
         region = dataCollector.region(None, None, None, None)
@@ -274,7 +249,6 @@ def getSetDetails_type_elem(equations):
         else:
             name = equation
             region.q_elements = True
-        # print("replacing name with spaces trimmed ", name)
         region.name = name
         region.name = region.name.replace(" ", "")
         region.label = name
@@ -299,7 +273,6 @@ def filter_expressions_sn(expressions):
                 new_expr2 = expression[j + 1:len(expression)]
                 if regex.match(new_expr1):
                     expressions[i] = new_expr1
-                    # print("NEW FILTERED EXPR", new_expr1)
 
                 if len(new_expr2) < 1:
                     break
@@ -307,8 +280,6 @@ def filter_expressions_sn(expressions):
                 if len(expr) > 0:
                     expr = filter_expressions_sn(expr)
                     expressions = expressions + expr
-                    # print("NEW EXPR LIST")
-                    # print(expressions)
                     break
     return expressions
 

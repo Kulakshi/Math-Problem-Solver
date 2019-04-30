@@ -12,13 +12,10 @@ def filter(text, type):
     # Filter from text
     text_copy = text
     output = []
-    print(type, type == util.type1)
     if type == util.type1:
         equationsCard = extract_equations(text_copy, RegexPatterns.cardinality_regex)
         text_copy = removeFromText(text_copy, equationsCard)
-        # print("text_copy:",  text_copy)
         subsets = extract_equations(text_copy, RegexPatterns.subset_regex)
-        # print(subsets)
         text_copy = removeFromText(text_copy, subsets)
         equal_cardinalities = extract_equations(text, RegexPatterns.equal_cardinality_regex)
         text_copy = removeFromText(text_copy, equal_cardinalities)

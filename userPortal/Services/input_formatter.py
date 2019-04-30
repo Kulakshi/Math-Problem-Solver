@@ -41,7 +41,6 @@ def tag_based_filter_set_name_elem(text,regex):
 def fill_elem_sequences(equation):
     name = equation[0: equation.find("=")]
     elements = extract_elements_from_eqn(equation)
-    # elements = elements_text.split(',')
     updated_elements = elements
     isNumbers = True
     isLetters = True
@@ -78,7 +77,6 @@ def fill_elem_sequences(equation):
                         except:
                             print("Not letters")
                             break
-                        print("GAP :", gap)
                         if (elements[i + 1] is not None):
                             if ord(elements[i + 1]) > ord(elements[i - 1]):
                                 j = ord(elements[i - 1]) + gap
@@ -90,15 +88,12 @@ def fill_elem_sequences(equation):
                                 while j > ord(elements[i + 1]):
                                     shrinkedPart.append(chr(j))
                                     j = j - gap
-                print(updated_elements)
-                print("SHRINKED : ", shrinkedPart)
                 updated_elements = updated_elements[0:i] + shrinkedPart + elements[i + 1:len(elements)]
     return name + '= {' + ','.join(updated_elements) + "}"
 
 def find_universal_set_symbol(equations, qtext, type):
     single_sets_eqns = equations
     single_set_names = extract_main_set_names(single_sets_eqns, type)
-    print(single_set_names)
     names = []
 
     for eqn in equations:
@@ -122,7 +117,6 @@ def find_universal_set_symbol(equations, qtext, type):
     all = all.replace("(", "#")
     all = all.replace("-", "#")
     all = all + '#'
-    print(all)
 
     candidiate_set_indexes = []
     candidiate_set_sizes = []
@@ -147,12 +141,9 @@ def find_universal_set_symbol(equations, qtext, type):
                     if max_size < size:
                         max_size = size
 
-    print("FINDING UNIVERSAL SET")
     # Find universal set based on given set names
     for set in single_set_names:
-        print("SET : ",set)
         num_occurences = all.count(set.replace(' ', '#'))
-        print("#Occur. : ", num_occurences)
         if (num_occurences == 1):
             for i, eqn in enumerate(equations):
                 if set in eqn:
@@ -173,19 +164,13 @@ def find_universal_set_symbol(equations, qtext, type):
                         candidiate_set_names.append(set.strip())
                         candidiate_set_elements.append(elements)
 
-    print(candidiate_set_names)
-    print(candidiate_set_sizes)
-    print(max_size)
     if len(candidiate_set_indexes) > 1:
         max_size = max(max(candidiate_set_sizes),max_size)
         uni_set_in_elems = True
         for i, size in enumerate(candidiate_set_sizes):
             if size == max_size:
-                print("QQQ")
                 if (type == util.type2):
-                    print(candidiate_set_names[i])
                     for j, elems in enumerate(candidiate_set_elements):
-                        print(elems, candidiate_set_elements[i])
                         if not contains(candidiate_set_elements[i], elems):
                             uni_set_in_elems = False
                 if uni_set_in_elems:
@@ -211,7 +196,6 @@ def find_universal_set_symbol(equations, qtext, type):
 def extract_main_set_names(main_set_eqns, type):
     names = []
     for expression in main_set_eqns:
-        print(type)
         name = ''
         if type == util.type1:
             name = extract_name_from_sn(expression)

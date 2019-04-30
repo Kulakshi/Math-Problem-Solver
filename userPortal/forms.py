@@ -15,12 +15,12 @@ USE_ML = [
 ]
 
 
-class NameForm(forms.Form):
+class ProbForm(forms.Form):
+    use_ml = forms.CharField(label='Select Expression Extraction Method',
+                                widget=forms.RadioSelect(choices=USE_ML))
     info_type = forms.CharField(label='Select Information Type',
                                 widget=forms.RadioSelect(choices=INFO_TYPES))
-    your_name = forms.CharField(label='Enter problem to solve', widget=forms.Textarea(attrs={'cols':120, 'rows': 8}))
+    info = forms.CharField(label='Enter problem to solve', widget=forms.Textarea(attrs={'cols':120, 'rows': 8}))
     ques_type = forms.CharField(label='Select Question Type',
                                 widget=forms.RadioSelect(choices=QUES_TYPES))
-    use_ml = forms.CharField(label='Select Question Type',
-                                widget=forms.RadioSelect(choices=USE_ML))
     question = forms.CharField(label='Enter question', widget=forms.Textarea(attrs={'cols':120, 'rows': 5}))

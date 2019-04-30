@@ -75,10 +75,6 @@ class Element(List):
 class ElemRhs(List):
     grammar = '{', csl(Element), '}'
 
-
-
-
-
 class inequality(list):
     grammar = [Expr, AnyNumber], some(inequalityOp, [Expr, AnyNumber])
 
@@ -119,9 +115,7 @@ class Eqn(List):
 def parseStr(text):
     try:
         f = parse(text, Eqn)
-        print(f)
     except ValueError:
-        print("ValueError")
         print("ValueError when parsing " + text, sys.exc_info()[1])
         return False
     except:

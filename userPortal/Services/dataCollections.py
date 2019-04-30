@@ -43,41 +43,28 @@ class info:
     def add_init_data(self, regions):
         region_names = self.get_region_names(regions)
 
-        print('\n\n')
-        print("# OF SETS 1 ",region_names)
         self.main_set_names = self.find_main_set_names(region_names)
-        print("# OF SETS 2 ",self.main_set_names)
-        print('\n\n')
 
         self.num_sets = len(self.main_set_names)
         self.num_regions = pow(2, pow(2, self.num_sets))
         if ('ξ' in region_names):
-            print(" UNIVERSAL SET IS PRESENT !!!!!!!!!!!!!!!!!!")
             self.main_name_index_map = {'ξ': self.num_regions - 1}
         else:
             self.main_name_index_map = {}
-        print("finite..")
         self.data = Finite_Array(self.num_regions)  # sparse.dok_matrix((1, self.num_regions), dtype=object)
-
-        print("MAIN SET INDICES")
         self.main_indices = self.calculate_main_set_indexes(self.num_sets)
-        print("MAIN SET INDICES",self.main_indices)
         self.fill_data(self.num_sets, regions)
 
-        self.print_data_array();
+        # self.print_data_array();
 
     def update_data(self, regions):
-        for region in regions:
-            print(region.name)
-        print("//////////////////////")
         self.fill_data(self.num_sets, regions)
-        self.print_data_array();
+        # self.print_data_array();
 
     def get_num_sets(self):
         return self.num_sets
 
     def print_data_array(self):
-        print("DATA ARRAY WITH MAIN SETS")
         for i, data in enumerate(self.data.array):
             if (data is not None):
                 print(i)
@@ -93,7 +80,6 @@ class info:
     def get_region_names(self, regions):
         region_names = []
         for region in regions:
-            print(region.name)
             region_names.append(region.name)
         return region_names
 
@@ -101,8 +87,6 @@ class info:
         return self.data.array
 
     def get_filled_regions(self):
-        print('FILLED REGIONS ===========================================================================================')
-        print(self.filled_regions)
         return self.filled_regions
 
     def get_main_name_index_map(self):
@@ -113,7 +97,6 @@ class info:
         for name in region_names:
             candi_names = re.sub(r'(\(|\)|∩|∪|ξ|\-|\'|\’|\|)', '#', name)
             candi_names = candi_names.split('#')
-            print(candi_names, '-' in candi_names)
 
             for candi_name in candi_names:
                 if candi_name is not '':
@@ -171,8 +154,6 @@ class info:
                 if region is not None:
                     if region.size is not None:
                         if int(region.size) < int(size):
-                            print(region.name, region.size )
-                            print(region.name, size )
                             raise Exception("Inconsistent Data : Cardinality of super set is less than sub set")
 
             sub_sets = utils.get_sub_sets(region_index, pow(2, self.num_sets))
@@ -194,7 +175,6 @@ class info:
                 self.main_name_index_map[main_sets[i].name] = main_index
         else:
             print("ERROR : fill_main_sets")
-        print(self.main_name_index_map)
 
     def get_main_set_regions(self, regions):
         main_sets = []
@@ -211,20 +191,14 @@ class info:
 
     def get_region_index(self, region_name):
         region_name = utils.convert_region_name_to_logical_exp(region_name)
-        print('======sent to convert=======', region_name)
         if region_name == 'ξ':
             return self.num_regions - 1
         elif region_name in self.main_set_names:
-            print(self.main_set_names)
             return  self.main_name_index_map[region_name]
         else:
             algebra = boolean.BooleanAlgebra()
 
             exp = str(algebra.parse(region_name).pretty())
-            print(exp)
-            print(exp)
-            print(exp)
-            print(exp)
             return utils.evaluate_logic_exp_tree(exp, self.num_sets, self.main_name_index_map, self.get_union_index,
                                                  self.get_intersection_index, self.get_complement_index)
 
@@ -257,7 +231,6 @@ class Finite_Array:
         self.size = 0
         self.max_size = max_size
         self.array = []
-        print(range(max_size))
         for i in range(max_size):
             self.array.append(None)
 

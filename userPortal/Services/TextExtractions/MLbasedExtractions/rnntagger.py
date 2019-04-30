@@ -39,7 +39,6 @@ def tag(text):
     for token in spacy_tagged:
         words.append(token.text)
     word2idx = {}
-    print(words)
     if os.path.isfile('F:\Academic\ML\Eval\converters\word2idx.json'):
         with open('F:\Academic\ML\Eval\converters\word2idx.json') as json_data:
             word2idx = json.load(json_data)

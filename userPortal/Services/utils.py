@@ -13,9 +13,6 @@ def convert_region_name_to_logical_exp(region_name):
     region_name = region_name.replace('-', '& ~')
     region_name = region_name.replace('(', '( ')
 
-    print("\n convert_region_name_to_logical_exp")
-    print(region_name)
-
     regex = re.compile('\'')
     results = regex.finditer(region_name)
     indexes = []
@@ -25,9 +22,7 @@ def convert_region_name_to_logical_exp(region_name):
 
     for index in indexes:
         if index > 0:
-            print(region_name[index-1])
             if (region_name[index - 1] is ')'):
-                # print('index - 1 is )')
                 count = 0
                 span_index = -1
                 for i in range(index - 1, -1, -1):
@@ -60,7 +55,6 @@ def evaluate_logic_exp_tree(exp, num_sets, main_set_index_map, or_func, and_func
     exp = exp.replace('\')', '')
 
     exp = [token[1] for token in tokenize.generate_tokens(StringIO(exp).readline) if str(token[1])]
-    print(exp)
     stack = Stack()
     for i, literal in enumerate(exp):
         stack.push(literal)
@@ -68,69 +62,47 @@ def evaluate_logic_exp_tree(exp, num_sets, main_set_index_map, or_func, and_func
     helperStack = Stack()
     while stack.size() > 0:
         literal = stack.pop()
-        # print(" LITERAL : ", literal)
         if literal == 'OR' or literal == 'AND' or literal == 'NOT' and literal is not None:
             operands = []
             popbackliteral = helperStack.pop()
-            # print("######1")
-            # print(popbackliteral)
             while popbackliteral is not ')':
                 if (not isinstance(popbackliteral, int)):
-                    # print("######")
-                    # print(popbackliteral)
                     operands.append(main_set_index_map[popbackliteral])
                 else:
                     operands.append(popbackliteral)
                 popbackliteral = helperStack.pop()
             if literal == 'OR':
-                print(operands)
                 stack.push(or_func(operands))
             if literal == 'AND':
                 stack.push(and_func(operands))
             if literal == 'NOT' and len(operands) > 0:
-                print(" trigerring NOT with.. : ", operands)
                 stack.push(not_func(num_sets, operands[0]))
         else:
             if literal is not '(' and literal is not ' ' and literal is not None:
-                # print(literal)
                 if (literal in main_set_index_map):
                     helperStack.push(main_set_index_map[literal])
                 else:
                     helperStack.push(literal)
-                # print("=====================helperStack========================")
-                # print(helperStack.items)
-                # print("========================stack=====================")
-                # print(stack.items)
 
     return helperStack.pop()
 
 
 def generate_equations(index, v, len_data):
 
-    print("EQUATIONS")
     # qRegion_eqn_mapping.append(None)
     if (v is not None):
         if (v.size is not None or v.q_size is True):
             eqn = get_expr_for_region(index, int(math.sqrt(len_data)))
-            if (v.size is not None):  # size is not '?'):
-
-                # if (v.q_size is True):
-                    # self.qRegion_eqn_mapping[i] = eqn
-                    # self.result[eqn] = int(v.size)
+            if (v.size is not None):
                 eqn = eqn - int(v.size)
-                print(eqn)
-                # equations += (eqn,)
-            if (v.size is None and v.q_size is True):
-                print(eqn)
-                # qRegion_eqn_mapping.append(eqn)
-    # print(qRegion_eqn_mapping)
+            # if (v.size is None and v.q_size is True):
+            #     print(eqn)
     return eqn
 
 def get_symbols_for_region(key, num_symbols):
     a = ord('a')
     symbols = []
     key = bin(key)[2:].zfill(num_symbols)
-    # print(key)
     for i, digit in enumerate(key):
         if (digit == '1'):
             symbols.append(sympy.Symbol(chr(a + i)))
@@ -140,7 +112,6 @@ def get_expr_for_region(key, num_symbols):
     a = ord('a')
     expr = 0
     key = bin(key)[2:].zfill(num_symbols)
-    # print(key)
     for i, digit in enumerate(key):
         if (digit == '1'):
             expr += sympy.Symbol(chr(a + i))
@@ -217,7 +188,6 @@ class Stack:
         return self.items == []
 
     def push(self, item):
-        # print("STACK PUSH : ", item)
         self.items.append(item)
 
     def pop(self):

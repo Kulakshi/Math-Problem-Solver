@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name='index'),
-    url(r'^edit_favorites', views.edit_favorites),
+    # url(r'^edit_favorites', views.edit_favorites),
     url(r'^form', views.index, name='form')
 ]

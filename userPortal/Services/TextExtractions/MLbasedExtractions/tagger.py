@@ -23,13 +23,10 @@ data = []
 def train():
     for path, subdirs, files in os.walk(paths[1]):
         for filename in files:
-            # print(filename)
             f=codecs.open("F:\Academic\ML\SemEvelData\conll\\"+filename,encoding='utf-8')
             line = f.readline()
-    ##        print(line)
             texts = []
             while line :
-    ##            print("While" + filename)
                 if(len(line.split(' ')) > 1):
                     line = line.replace('\n', '')
                     line = line.replace('\r', '')
@@ -39,7 +36,6 @@ def train():
                         tag = 'e_1'
                     text = (word, tag)
                     texts.append(text)
-    ##                print(text)
                 line = f.readline()
             features.append(texts)
 
@@ -47,7 +43,6 @@ def train():
     for i, doc in enumerate(features):
         # Obtain the list of tokens in the document
         tokens = [t.encode('utf-8') for t, label in doc]
-    ##    print(tokens)
         # Perform POS tagging
         for i, token in enumerate(tokens):
             tokens[i] = str(tokens[i])
@@ -109,7 +104,6 @@ def word2features(doc, i):
     r = re.compile(r'[Xx]+')
     tokens = [word for word, pos, shape in doc]
     bigrm = list(nltk.bigrams(tokens))
-    ##    print(token.encode('utf-8'))
     shapeDetail = (len(str(r.match(str(token)).group())) == len(str(token))) if (
                 r.match(str(token)) is not None) else False
     chNgrams = []
@@ -417,8 +411,6 @@ def test():
     predictions = np.array([labels[tag] for row in y_pred for tag in row])
     truths = np.array([labels[tag] for row in y for tag in row])
 
-
-    # Print out the classification report
     print(classification_report(
         truths, predictions,
     ##    target_names=["B-e_1", "I-e_1","O"]))
